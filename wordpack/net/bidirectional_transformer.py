@@ -19,7 +19,7 @@ class BidirectionalTransformer(tf.keras.layers.Layer):
     
     def __call__(self, x):
         return self.final_layer(tf.concat([
-            self.fw_transformer(x), self.bw_transformer(x)], 2))
+            self.fw_transformer(x), self.bw_transformer(tf.reverse(x, [1]))], 2))
         
     @property
     def trainable_variables(self):
